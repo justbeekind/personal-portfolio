@@ -19,11 +19,11 @@ export class CopyOnClickDirective implements OnDestroy {
   onClick(e: Event): void {
     if (!this.value) return;
     e.preventDefault();
-    const ok = (text: string) =>
-      navigator.clipboard?.writeText(text) ??
-      Promise.reject(new Error('clipboard unavailable'));
 
-    ok(this.value)
+    const write = navigator.clipboard?.writeText(this.value)
+      ?? Promise.reject(new Error('clipboard unavailable'));
+
+    write
       .then(() => this.flash())
       .catch(() => this.fallbackCopy(this.value) && this.flash());
   }

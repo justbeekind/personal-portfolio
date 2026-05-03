@@ -1,97 +1,90 @@
 <div class="px-6 py-10 max-w-screen-xl mx-auto">
 
-  <!-- ===== TERMINAL (first section) ===== -->
   <section class="mb-20 anim-terminal-enter">
-    <div class="bg-[#1c1b1b] border border-[#3b4b37]/20 shadow-2xl">
-        <!-- Window Chrome -->
-        <div class="flex items-center gap-2 px-4 py-3 bg-[#201f1f] border-b border-[#3b4b37]/15">
+    <div class="bg-[#19191d] border border-[#3a4a37]/20 shadow-2xl">
+        <div class="flex items-center gap-2 px-4 py-3 bg-[#1f1f24] border-b border-[#3a4a37]/15">
           <div class="flex gap-1.5">
             <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
             <div class="w-3 h-3 rounded-full bg-amber-500/50"></div>
             <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
           </div>
-          <span class="ml-3 font-mono text-[10px] text-[#fbfae9]/25 uppercase tracking-widest">zsh — ~/portfolio — 80x24</span>
+          <span class="ml-3 font-mono text-[10px] text-[#f4efdf]/25 uppercase tracking-widest">zsh — ~/portfolio — 80x24</span>
         </div>
 
-        <!-- Terminal Content -->
         <div class="p-6 font-mono text-sm space-y-5 min-h-[320px]">
 
-          <!-- whoami command -->
           @if (cmd1Text().length > 0) {
             <div>
               <div class="flex items-center gap-2 mb-3">
                 <span class="text-[#ecffe3]/70">$</span>
-                <span class="text-[#fbfae9]">{{ cmd1Text() }}</span>
+                <span class="text-[#f4efdf]">{{ cmd1Text() }}</span>
                 @if (showCursor1()) {
                   <div class="w-2.5 h-[1.1em] bg-[#ecffe3] cursor-blink-fast"></div>
                 }
               </div>
               @if (cmd1OutputVisible()) {
-                <div class="text-[#fbfae9]/55 space-y-1 pl-4 border-l border-[#3b4b37]/30 terminal-output-enter">
-                  <p><span class="text-[#b9ccb2]">NAME</span>: NIKITA_HAITSIUKEVICH</p>
-                  <p><span class="text-[#b9ccb2]">ROLE</span>: FULL_STACK_DEVELOPER</p>
-                  <p><span class="text-[#b9ccb2]">EDU</span>: UCONN_CS_2029</p>
-                  <p><span class="text-[#b9ccb2]">LOC</span>: STAMFORD_CT // 41.05° N</p>
-                  <p><span class="text-[#b9ccb2]">STATUS</span>: <span class="text-[#00e639]">[OPEN_TO_INTERNSHIPS]</span></p>
+                <div class="text-[#f4efdf]/55 space-y-1 pl-4 border-l border-[#3a4a37]/30 terminal-output-enter">
+                  <p><span class="text-[#b7ccae]">NAME</span>: NIKITA_HAITSIUKEVICH</p>
+                  <p><span class="text-[#b7ccae]">ROLE</span>: FULL_STACK_DEVELOPER</p>
+                  <p><span class="text-[#b7ccae]">EDU</span>: UCONN_CS_2029</p>
+                  <p><span class="text-[#b7ccae]">LOC</span>: STAMFORD_CT // 41.05° N</p>
+                  <p><span class="text-[#b7ccae]">STATUS</span>: <span class="text-[#1fd550]">[OPEN_TO_INTERNSHIPS]</span></p>
                 </div>
               }
             </div>
           }
 
-          <!-- cat stack.json -->
           @if (cmd2Text().length > 0) {
             <div>
               <div class="flex items-center gap-2 mb-3">
                 <span class="text-[#ecffe3]/70">$</span>
-                <span class="text-[#fbfae9]">{{ cmd2Text() }}</span>
+                <span class="text-[#f4efdf]">{{ cmd2Text() }}</span>
                 @if (showCursor2()) {
                   <div class="w-2.5 h-[1.1em] bg-[#ecffe3] cursor-blink-fast"></div>
                 }
               </div>
               @if (cmd2OutputVisible()) {
-                <div class="text-[#ecffe3]/80 terminal-glow pl-4 border-l border-[#3b4b37]/30 leading-relaxed terminal-output-enter">
+                <div class="text-[#ecffe3]/80 terminal-glow pl-4 border-l border-[#3a4a37]/30 leading-relaxed terminal-output-enter">
                   &#123;<br/>
-                  &nbsp;&nbsp;<span class="text-[#b9ccb2]">"languages"</span>: ["Assembly", "C", "C++", "Python", "Java", "C#", "JS", "TS", "SQL"],<br/>
-                  &nbsp;&nbsp;<span class="text-[#b9ccb2]">"frameworks"</span>: ["Angular", "Spring Boot"],<br/>
-                  &nbsp;&nbsp;<span class="text-[#b9ccb2]">"database"</span>: ["PostgreSQL"],<br/>
-                  &nbsp;&nbsp;<span class="text-[#b9ccb2]">"tools"</span>: ["Git", "Bash", "Zsh"]<br/>
+                  &nbsp;&nbsp;<span class="text-[#b7ccae]">"languages"</span>: ["Assembly", "C", "C++", "Python", "Java", "C#", "JS", "TS", "SQL"],<br/>
+                  &nbsp;&nbsp;<span class="text-[#b7ccae]">"frameworks"</span>: ["Angular", "Spring Boot"],<br/>
+                  &nbsp;&nbsp;<span class="text-[#b7ccae]">"database"</span>: ["PostgreSQL"],<br/>
+                  &nbsp;&nbsp;<span class="text-[#b7ccae]">"tools"</span>: ["Git", "Bash", "Zsh"]<br/>
                   &#125;
                 </div>
               }
             </div>
           }
 
-          <!-- git log (real GitHub commits) -->
           @if (cmd3Text().length > 0) {
             <div>
               <div class="flex items-center gap-2 mb-3">
                 <span class="text-[#ecffe3]/70">$</span>
-                <span class="text-[#fbfae9]">{{ cmd3Text() }}</span>
+                <span class="text-[#f4efdf]">{{ cmd3Text() }}</span>
                 @if (showCursor3()) {
                   <div class="w-2.5 h-[1.1em] bg-[#ecffe3] cursor-blink-fast"></div>
                 }
               </div>
               @if (cmd3OutputVisible()) {
-                <div class="text-[#fbfae9]/40 space-y-1 pl-4 border-l border-[#3b4b37]/30 text-xs terminal-output-enter">
+                <div class="text-[#f4efdf]/40 space-y-1 pl-4 border-l border-[#3a4a37]/30 text-xs terminal-output-enter">
                   @if (recentCommits().length > 0) {
                     @for (c of recentCommits(); track c.sha) {
                       <p class="truncate">
-                        <a [href]="c.url" target="_blank" rel="noopener" class="hover:text-[#fbfae9]/80 transition-colors">
-                          <span class="text-[#ffba43]">{{ c.sha }}</span>
-                          <span class="text-[#b9ccb2]/70">({{ c.repo }})</span>
+                        <a [href]="c.url" target="_blank" rel="noopener" class="hover:text-[#f4efdf]/80 transition-colors">
+                          <span class="text-[#f1b143]">{{ c.sha }}</span>
+                          <span class="text-[#b7ccae]/70">({{ c.repo }})</span>
                           {{ c.message }}
                         </a>
                       </p>
                     }
                   } @else {
-                    <p class="text-[#fbfae9]/30 italic">// no recent push events visible — check github.com/{{ username }}</p>
+                    <p class="text-[#f4efdf]/30 italic">// no recent push events visible — check github.com/{{ username }}</p>
                   }
                 </div>
               }
             </div>
           }
 
-          <!-- Final cursor -->
           @if (finalCursorVisible()) {
             <div class="flex items-center gap-2">
               <span class="text-[#ecffe3]/70">$</span>
@@ -103,32 +96,29 @@
       </div>
   </section>
 
-  <!-- ===== CONTRIBUTION HEATMAP ===== -->
   <section class="mb-20 scroll-reveal">
     <div class="flex justify-between items-end mb-5">
       <p class="font-mono text-[10px] uppercase tracking-widest text-[#ecffe3]/50">// 002 — activity</p>
       <div class="text-right">
         @if (contributionsLoaded()) {
           <p class="font-mono text-[11px] text-[#ecffe3]/70 tabular-nums uppercase tracking-widest">
-            {{ contributionsTotal() }} <span class="text-[#fbfae9]/40">commits · last 12 months</span>
+            {{ contributionsTotal() }} <span class="text-[#f4efdf]/40">commits · last 12 months</span>
           </p>
         } @else {
-          <span class="font-mono text-[10px] text-[#fbfae9]/30 uppercase tracking-widest">syncing github…</span>
+          <span class="font-mono text-[10px] text-[#f4efdf]/30 uppercase tracking-widest">syncing github…</span>
         }
       </div>
     </div>
 
-    <div class="bg-[#1c1b1b] p-6 border border-[#3b4b37]/15 overflow-x-auto hide-scrollbar">
-      <!-- Month labels -->
+    <div class="bg-[#19191d] p-6 border border-[#3a4a37]/15 overflow-x-auto hide-scrollbar">
       <div class="flex gap-1 mb-2 min-w-[660px]" aria-hidden="true">
         @for (month of months; track month; let i = $index) {
-          <span class="font-mono text-[9px] text-[#fbfae9]/25 uppercase" [style.flex]="i < 11 ? '0 0 calc(100%/12)' : '1'">
+          <span class="font-mono text-[9px] text-[#f4efdf]/25 uppercase" [style.flex]="i < 11 ? '0 0 calc(100%/12)' : '1'">
             {{ month }}
           </span>
         }
       </div>
 
-      <!-- Grid: columns = weeks, rows = days -->
       <div class="flex gap-1 min-w-[660px]" [class.opacity-40]="!contributionsLoaded()">
         @for (week of heatmapWeeks(); track $index) {
           <div class="flex flex-col gap-1">
@@ -141,8 +131,7 @@
         }
       </div>
 
-      <!-- Legend -->
-      <div class="flex justify-between items-center mt-4 font-mono text-[9px] text-[#fbfae9]/30 uppercase">
+      <div class="flex justify-between items-center mt-4 font-mono text-[9px] text-[#f4efdf]/30 uppercase">
         <a [href]="'https://github.com/' + username" target="_blank" rel="noopener" class="hover:text-[#ecffe3] transition-colors tracking-widest">
           @{{ username }}
         </a>
@@ -159,7 +148,6 @@
     </div>
   </section>
 
-  <!-- ===== PINNED REPOSITORIES (live from GitHub) ===== -->
   <section class="mb-20 scroll-reveal">
     <div class="flex justify-between items-end mb-5">
       <p class="font-mono text-[10px] uppercase tracking-widest text-[#ecffe3]/50">// 003 — work</p>
@@ -171,19 +159,19 @@
     </div>
 
     @if (repos().length > 0) {
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#3b4b37]/15">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#3a4a37]/15">
         @for (repo of repos(); track repo.id) {
           <a [href]="repo.html_url" target="_blank" rel="noopener"
-             class="bg-[#131313] p-7 group hover:bg-[#1c1b1b] transition-colors duration-300 border border-transparent hover:border-[#3b4b37]/20 card-hover-glow no-underline block">
+             class="bg-[#111114] p-7 group hover:bg-[#19191d] transition-colors duration-300 border border-transparent hover:border-[#3a4a37]/20 card-hover-glow no-underline block">
             <div class="flex justify-between items-start mb-5">
               <span class="material-symbols-outlined text-[#ecffe3] transition-transform group-hover:scale-110">{{ repoIcon(repo.language) }}</span>
               <div class="flex items-center gap-2">
                 @if (repo.stargazers_count > 0) {
-                  <span class="font-mono text-[10px] text-[#fbfae9]/50 uppercase inline-flex items-center gap-1 tabular-nums">
+                  <span class="font-mono text-[10px] text-[#f4efdf]/50 uppercase inline-flex items-center gap-1 tabular-nums">
                     <span class="material-symbols-outlined text-[12px]">star</span>{{ repo.stargazers_count }}
                   </span>
                 }
-                <span class="font-mono text-[10px] text-[#fbfae9]/40 uppercase border border-[#3b4b37]/30 px-2 py-0.5 tracking-widest">
+                <span class="font-mono text-[10px] text-[#f4efdf]/40 uppercase border border-[#3a4a37]/30 px-2 py-0.5 tracking-widest">
                   PUBLIC
                 </span>
               </div>
@@ -191,10 +179,10 @@
             <h3 class="font-mono text-base font-bold mb-2.5 group-hover:text-[#ecffe3] transition-colors leading-tight">
               {{ repo.name }}
             </h3>
-            <p class="text-sm text-[#fbfae9]/55 mb-6 font-body leading-relaxed line-clamp-2 min-h-[2.5em]">
+            <p class="text-sm text-[#f4efdf]/55 mb-6 font-body leading-relaxed line-clamp-2 min-h-[2.5em]">
               {{ repo.description || '— no description —' }}
             </p>
-            <div class="flex items-center justify-between font-mono text-[10px] text-[#fbfae9]/40">
+            <div class="flex items-center justify-between font-mono text-[10px] text-[#f4efdf]/40">
               <span class="flex items-center gap-3">
                 @if (repo.language) {
                   <span class="flex items-center gap-1.5">
@@ -202,7 +190,7 @@
                     {{ repo.language }}
                   </span>
                 }
-                <span class="text-[#fbfae9]/30">updated {{ formatRelativeDate(repo.pushed_at) }}</span>
+                <span class="text-[#f4efdf]/30">updated {{ formatRelativeDate(repo.pushed_at) }}</span>
               </span>
               <span class="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-[#ecffe3]/70">
                 open <span class="material-symbols-outlined text-xs">north_east</span>
@@ -212,33 +200,31 @@
         }
       </div>
     } @else {
-      <!-- Loading skeleton -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#3b4b37]/15">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#3a4a37]/15">
         @for (_ of [1,2,3,4]; track $index) {
-          <div class="bg-[#131313] p-7 animate-pulse">
+          <div class="bg-[#111114] p-7 animate-pulse">
             <div class="flex justify-between items-start mb-5">
-              <div class="w-6 h-6 bg-[#3b4b37]/30"></div>
-              <div class="w-16 h-4 bg-[#3b4b37]/20"></div>
+              <div class="w-6 h-6 bg-[#3a4a37]/30"></div>
+              <div class="w-16 h-4 bg-[#3a4a37]/20"></div>
             </div>
-            <div class="w-32 h-4 bg-[#3b4b37]/30 mb-3"></div>
-            <div class="w-full h-3 bg-[#3b4b37]/15 mb-2"></div>
-            <div class="w-3/4 h-3 bg-[#3b4b37]/15 mb-6"></div>
-            <div class="w-24 h-3 bg-[#3b4b37]/20"></div>
+            <div class="w-32 h-4 bg-[#3a4a37]/30 mb-3"></div>
+            <div class="w-full h-3 bg-[#3a4a37]/15 mb-2"></div>
+            <div class="w-3/4 h-3 bg-[#3a4a37]/15 mb-6"></div>
+            <div class="w-24 h-3 bg-[#3a4a37]/20"></div>
           </div>
         }
       </div>
     }
   </section>
 
-  <!-- ===== READ-MORE NUDGE ===== -->
   <section class="mb-12 scroll-reveal">
-    <div class="border-t border-dashed border-[#3b4b37]/40 pt-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-      <p class="font-mono text-[11px] uppercase tracking-widest text-[#fbfae9]/45">
+    <div class="border-t border-dashed border-[#3a4a37]/40 pt-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      <p class="font-mono text-[11px] uppercase tracking-widest text-[#f4efdf]/45">
         // full work history &amp; education in resume.md
       </p>
       <a routerLink="/resume"
          class="font-mono text-[11px] uppercase tracking-widest text-[#ecffe3] hover:text-white inline-flex items-center gap-2 group transition-colors">
-        <span class="text-[#fbfae9]/40">$</span> cat resume.md
+        <span class="text-[#f4efdf]/40">$</span> cat resume.md
         <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-0.5">arrow_forward</span>
       </a>
     </div>

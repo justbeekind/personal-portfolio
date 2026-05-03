@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   readonly username = GITHUB_USERNAME;
 
-  // ===== GitHub data signals =====
   readonly contributions = toSignal(
     this.gh.fetchContributions().pipe(catchError(() => of(null))),
     { initialValue: null },
@@ -56,7 +55,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   readonly heatmapWeeks = computed<ContributionDay[][]>(() => {
     const data = this.contributions();
     if (!data) {
-      // Skeleton: 52 empty weeks while loading
       return Array.from({ length: 52 }, () =>
         Array.from({ length: 7 }, () => ({ date: '', count: 0, level: 0 as const })),
       );
@@ -66,7 +64,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   readonly months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
 
-  // ===== Helpers exposed to template =====
   readonly languageColor = languageColor;
   readonly repoIcon = repoIcon;
 
@@ -85,7 +82,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     return `${Math.floor(days / 365)}y ago`;
   }
 
-  // ===== Terminal typing animation =====
   readonly cmd1Text = signal('');
   readonly cmd1OutputVisible = signal(false);
   readonly cmd2Text = signal('');

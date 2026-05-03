@@ -32,9 +32,7 @@ function writeCache<T>(key: string, data: T, ttlMs: number): void {
   try {
     const entry: CacheEntry<T> = { data, expiresAt: Date.now() + ttlMs };
     sessionStorage.setItem(CACHE_PREFIX + key, JSON.stringify(entry));
-  } catch {
-    // Quota exceeded or storage disabled — fail silently.
-  }
+  } catch {}
 }
 
 export interface ContributionDay {
@@ -118,7 +116,6 @@ export class GithubService {
     );
   }
 
-  /** Clear all cached GitHub responses (useful for a manual "refresh" button). */
   clearCache(): void {
     if (typeof sessionStorage === 'undefined') return;
     for (let i = sessionStorage.length - 1; i >= 0; i--) {
@@ -172,8 +169,8 @@ const LANG_COLORS: Record<string, string> = {
 };
 
 export function languageColor(language: string | null | undefined): string {
-  if (!language) return '#84967e';
-  return LANG_COLORS[language] ?? '#84967e';
+  if (!language) return '#7e947a';
+  return LANG_COLORS[language] ?? '#7e947a';
 }
 
 const LANG_ICONS: Record<string, string> = {

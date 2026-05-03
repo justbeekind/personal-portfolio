@@ -1,47 +1,43 @@
 <div class="flex flex-col min-h-screen">
 
-  <!-- ===== AMBIENT OVERLAYS ===== -->
   <div class="scanline-overlay" aria-hidden="true"></div>
 
-  <!-- ===== TOP NAV ===== -->
-  <header class="fixed top-0 left-0 w-full z-50 bg-[#131313]/85 backdrop-blur-md border-b border-[#3b4b37]/20">
+  <header class="fixed top-0 left-0 w-full z-50 bg-[#111114]/85 backdrop-blur-md border-b border-[#3a4a37]/20">
     <nav class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto">
 
-      <!-- Brand + Top Links -->
       <div class="flex items-center gap-8">
         <a routerLink="/" aria-label="Home" class="flex items-center gap-2 group">
           <span class="w-2 h-2 bg-[#ecffe3] inline-block group-hover:rotate-45 transition-transform duration-300"></span>
-          <span class="text-lg font-mono uppercase tracking-tighter text-[#fbfae9] group-hover:text-[#ecffe3] transition-colors">
+          <span class="text-lg font-mono uppercase tracking-tighter text-[#f4efdf] group-hover:text-[#ecffe3] transition-colors">
             NIKITA.H
           </span>
         </a>
         <div class="hidden md:flex gap-6 items-end font-mono">
           <a routerLink="/" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active" ariaCurrentWhenActive="page" class="top-nav-link">
-            <span class="text-[#fbfae9]/30 mr-1">cd</span>home
+            <span class="text-[#f4efdf]/30 mr-1">cd</span>home
           </a>
           <a routerLink="/resume" routerLinkActive="active" ariaCurrentWhenActive="page" class="top-nav-link">
-            <span class="text-[#fbfae9]/30 mr-1">cd</span>resume
+            <span class="text-[#f4efdf]/30 mr-1">cd</span>resume
           </a>
         </div>
       </div>
 
-      <!-- Right Actions -->
       <div class="flex items-center gap-1">
-        <span class="hidden sm:inline-flex items-center gap-2 mr-3 px-2.5 py-1 border border-[#3b4b37]/30 font-mono text-[10px] uppercase tracking-widest text-[#fbfae9]/50">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#00e639] inline-block"></span>
+        <span class="hidden sm:inline-flex items-center gap-2 mr-3 px-2.5 py-1 border border-[#3a4a37]/30 font-mono text-[10px] uppercase tracking-widest text-[#f4efdf]/50">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#1fd550] inline-block"></span>
           Available
         </span>
         <a href="https://www.linkedin.com/in/hikita/" target="_blank" rel="noopener"
-           class="text-[#fbfae9]/50 hover:text-[#ecffe3] transition-colors p-2" aria-label="LinkedIn">
+           class="text-[#f4efdf]/50 hover:text-[#ecffe3] transition-colors p-2" aria-label="LinkedIn">
           <span class="material-symbols-outlined">work</span>
         </a>
         <a href="https://github.com/justbeekind" target="_blank" rel="noopener"
-           class="text-[#fbfae9]/50 hover:text-[#ecffe3] transition-colors p-2" aria-label="GitHub">
+           class="text-[#f4efdf]/50 hover:text-[#ecffe3] transition-colors p-2" aria-label="GitHub">
           <span class="material-symbols-outlined">code</span>
         </a>
         <a href="mailto:nikitos.gn@gmail.com"
            [copyOnClick]="'nikitos.gn@gmail.com'"
-           class="copy-link text-[#fbfae9]/50 hover:text-[#ecffe3] transition-colors p-2 relative"
+           class="copy-link text-[#f4efdf]/50 hover:text-[#ecffe3] transition-colors p-2 relative"
            aria-label="Copy email to clipboard"
            title="Click to copy email">
           <span class="material-symbols-outlined">mail</span>
@@ -52,34 +48,30 @@
   </header>
 
   <div class="flex flex-1 pt-[65px]">
-
-    <!-- ===== MAIN CONTENT ===== -->
     <main class="flex-1 min-w-0">
       <router-outlet />
     </main>
-
   </div>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="bg-[#0e0e0e] border-t border-[#3b4b37]/20">
+  <footer class="bg-[#0b0b0e] border-t border-[#3a4a37]/20">
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 px-8 py-6 max-w-screen-2xl mx-auto">
       <div class="flex flex-col sm:flex-row gap-2 sm:gap-6 items-start sm:items-center">
-        <span class="font-mono text-[10px] uppercase tracking-widest text-[#fbfae9]/40 inline-flex items-center gap-2">
+        <span class="font-mono text-[10px] uppercase tracking-widest text-[#f4efdf]/40 inline-flex items-center gap-2">
           <span class="w-1.5 h-1.5 bg-[#ecffe3]/60"></span>
           © 2025 · NIKITA_H
         </span>
-        <span class="hidden sm:inline font-mono text-[10px] uppercase tracking-widest text-[#fbfae9]/25">
+        <span class="hidden sm:inline font-mono text-[10px] uppercase tracking-widest text-[#f4efdf]/25">
           BUILD_SUCCESS · UCONN_CS_2029
         </span>
       </div>
       <div class="flex gap-5">
         <a href="https://www.linkedin.com/in/hikita/" target="_blank" rel="noopener"
-           class="font-mono text-[10px] uppercase tracking-widest text-[#fbfae9]/40 hover:text-[#ecffe3] transition-colors">LinkedIn</a>
+           class="font-mono text-[10px] uppercase tracking-widest text-[#f4efdf]/40 hover:text-[#ecffe3] transition-colors">LinkedIn</a>
         <a href="https://github.com/justbeekind" target="_blank" rel="noopener"
-           class="font-mono text-[10px] uppercase tracking-widest text-[#fbfae9]/40 hover:text-[#ecffe3] transition-colors">GitHub</a>
+           class="font-mono text-[10px] uppercase tracking-widest text-[#f4efdf]/40 hover:text-[#ecffe3] transition-colors">GitHub</a>
         <a href="mailto:nikitos.gn@gmail.com"
            [copyOnClick]="'nikitos.gn@gmail.com'"
-           class="copy-link font-mono text-[10px] uppercase tracking-widest text-[#fbfae9]/40 hover:text-[#ecffe3] transition-colors relative"
+           class="copy-link font-mono text-[10px] uppercase tracking-widest text-[#f4efdf]/40 hover:text-[#ecffe3] transition-colors relative"
            title="Click to copy email">Email</a>
       </div>
     </div>
