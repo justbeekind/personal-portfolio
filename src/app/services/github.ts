@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, tap } from 'rxjs';
+import { Observable, forkJoin, of, tap } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 export const GITHUB_USERNAME = 'justbeekind';
 const CACHE_TTL_MS = 15 * 60 * 1000;
@@ -61,17 +62,17 @@ export interface GitHubRepo {
   topics?: string[];
 }
 
-interface PushEventCommit {
-  sha: string;
-  message: string;
-}
-
 interface GitHubEvent {
   id: string;
   type: string;
   repo: { name: string };
-  payload: { commits?: PushEventCommit[] };
+  payload: { head?: string };
   created_at: string;
+}
+
+interface CommitDetail {
+  sha: string;
+  commit: { message: string };
 }
 
 export interface RecentCommit {
@@ -116,6 +117,35 @@ export class GithubService {
     );
   }
 
+  // /repos/.../commits/{sha} endpoint and cache by SHA.
+  fetchRecentCommits(limit = 3): Observable<RecentCommit[]> {
+    return this.fetchRecentEvents().pipe(
+      switchMap(events => {
+        const pushes = events
+          .filter(e => e.type === 'PushEvent' && !!e.payload.head)
+          .slice(0, limit);
+        if (pushes.length === 0) return of([] as RecentCommit[]);
+        return forkJoin(
+          pushes.map(e =>
+            this.cachedGet<CommitDetail>(
+              `commit:${e.repo.name}:${e.payload.head}`,
+              `https://api.github.com/repos/${e.repo.name}/commits/${e.payload.head}`,
+            ).pipe(
+              map(c => ({
+                sha: c.sha.slice(0, 7),
+                message: c.commit.message.split('\n')[0],
+                repo: e.repo.name.split('/')[1] ?? e.repo.name,
+                url: `https://github.com/${e.repo.name}/commit/${c.sha}`,
+                date: e.created_at,
+              }) satisfies RecentCommit),
+              catchError(() => of(null)),
+            ),
+          ),
+        ).pipe(map(results => results.filter((c): c is RecentCommit => c !== null)));
+      }),
+    );
+  }
+
   clearCache(): void {
     if (typeof sessionStorage === 'undefined') return;
     for (let i = sessionStorage.length - 1; i >= 0; i--) {
@@ -123,21 +153,6 @@ export class GithubService {
       if (key?.startsWith(CACHE_PREFIX)) sessionStorage.removeItem(key);
     }
   }
-}
-
-export function eventsToCommits(events: GitHubEvent[], limit = 3): RecentCommit[] {
-  return events
-    .filter(e => e.type === 'PushEvent')
-    .flatMap(e =>
-      (e.payload.commits ?? []).slice(-1).map(c => ({
-        sha: c.sha.slice(0, 7),
-        message: c.message.split('\n')[0],
-        repo: e.repo.name.split('/')[1] ?? e.repo.name,
-        url: `https://github.com/${e.repo.name}/commit/${c.sha}`,
-        date: e.created_at,
-      })),
-    )
-    .slice(0, limit);
 }
 
 export function bucketIntoWeeks(days: ContributionDay[]): ContributionDay[][] {

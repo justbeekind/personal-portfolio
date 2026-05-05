@@ -9,7 +9,6 @@ import {
   GitHubRepo,
   RecentCommit,
   bucketIntoWeeks,
-  eventsToCommits,
   languageColor,
   repoIcon,
 } from '../../services/github';
@@ -42,8 +41,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   );
 
   readonly recentCommits = toSignal(
-    this.gh.fetchRecentEvents().pipe(
-      map(events => eventsToCommits(events, 3)),
+    this.gh.fetchRecentCommits(3).pipe(
       catchError(() => of([] as RecentCommit[])),
     ),
     { initialValue: [] as RecentCommit[] },
@@ -62,7 +60,31 @@ export class HomeComponent implements OnInit, OnDestroy {
     return bucketIntoWeeks(data.contributions);
   });
 
-  readonly months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  private static readonly MONTH_ABBR = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  private static readonly CELL_PX = 11;
+  private static readonly GAP_PX = 4;
+
+  readonly monthLabelGroups = computed<{ label: string; widthPx: number }[]>(() => {
+    const weeks = this.heatmapWeeks();
+    const groups: { label: string; weeks: number }[] = [{ label: '', weeks: 0 }];
+    for (const week of weeks) {
+      for (const day of week) {
+        if (!day.date) continue;
+        const d = new Date(day.date + 'T00:00:00');
+        if (d.getDate() === 1) {
+          groups.push({ label: HomeComponent.MONTH_ABBR[d.getMonth()], weeks: 0 });
+          break;
+        }
+      }
+      groups[groups.length - 1].weeks++;
+    }
+    return groups
+      .filter(g => g.weeks > 0)
+      .map(g => ({
+        label: g.label,
+        widthPx: g.weeks * HomeComponent.CELL_PX + (g.weeks - 1) * HomeComponent.GAP_PX,
+      }));
+  });
 
   readonly languageColor = languageColor;
   readonly repoIcon = repoIcon;

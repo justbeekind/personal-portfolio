@@ -112,9 +112,10 @@
 
     <div class="bg-[#19191d] p-6 border border-[#3a4a37]/15 overflow-x-auto hide-scrollbar">
       <div class="flex gap-1 mb-2 min-w-[660px]" aria-hidden="true">
-        @for (month of months; track month; let i = $index) {
-          <span class="font-mono text-[9px] text-[#f4efdf]/25 uppercase" [style.flex]="i < 11 ? '0 0 calc(100%/12)' : '1'">
-            {{ month }}
+        @for (group of monthLabelGroups(); track $index) {
+          <span class="font-mono text-[9px] text-[#f4efdf]/25 uppercase whitespace-nowrap"
+                [style.flex]="'0 0 ' + group.widthPx + 'px'">
+            {{ group.label }}
           </span>
         }
       </div>
